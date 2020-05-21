@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Admin's Dashboard
+{{ Auth::user()->name }}'s Dashboard
 @endsection
 
 @section('content')

@@ -1,31 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
     public function viewCategory()
     {
-        return view('admin.categories.add-category');
+        $categories = Category::all();
+        return view('admin.add-category')->with('categories', $categories);
     }
 
     public function addCategory(Request $request)
     {
-        if($request->isMethod('post'))
-        {
-            $data = $request->all();
-            
-            // echo "<pre>"; print_r($data); die;
-            $category = new Category();
-            $category->category_name = $data['category_name'];
-            $category->description = $data['description'];
-            $category->url = $data['url'];
-            $category->save();
+        $this->validate($request, [
+            'catName' => 'required',
+            'slug' => 'required',
+        ]);
 
-            return redirect('admin.categories.add-category')->with('status','Category successfully added');
-        }
+        Category::create($request->all());
+
+        return back()->with('status','Category successfully added');
     }
 }

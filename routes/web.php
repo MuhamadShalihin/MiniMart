@@ -77,15 +77,11 @@ Route::group(['middleware' => ['auth', 'admin']], function()
     Route::put('/users-signedup-update/{id}', 'Admin\DashboardController@signedup_update');
     Route::delete('/users-delete/{id}', 'Admin\DashboardController@signedup_delete');
 
-    Route::get('/orders-list', function () {
-        return view('admin.customerorder');
-    });
-
+    Route::get('/orders-list', 'Admin\DashboardController@viewOrder');
+    
     //Categories routes (Admin)
-    Route::get('/add-category', function()
-    {
-        return view('admin.add-category');
-    });
+    Route::get('/categories-list', 'Admin\CategoryController@viewCategory');
+    Route::post('/categories-added', 'Admin\CategoryController@addCategory')->name('add-category.addCategory');
 });
 
 Route::get('/logout', 'AdminController@logout');

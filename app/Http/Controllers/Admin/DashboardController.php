@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\BillingDetails;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -38,5 +39,11 @@ class DashboardController extends Controller
         $users->delete();
 
         return redirect('/userslist')->with('status', 'Data succesfully deleted');
+    }
+
+    public function viewOrder()
+    {
+        $orders = BillingDetails::all();
+        return view('admin.customerorder')->with('orders', $orders);
     }
 }
