@@ -45,7 +45,7 @@ Route::get('/shop/category/{slug}', 'ShopController@index')->name('shop.category
 
 // show all product by categories
 // Route::get('/category/{slug}', 'CategoryController@show')->name('category.show')
-Route::get('/home', 'HomeController@index')->name('home')->middleware('guestmiddleware');;
+Route::get('/home', 'HomeController@index')->name('home')->middleware('user');
 
 Route::get('/cart', 'CartController@cart');
 Route::post('/add-to-cart/{id}', 'CartController@addToCart');
