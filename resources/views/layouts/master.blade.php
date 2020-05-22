@@ -46,8 +46,8 @@
               <p>Add Category</p>
             </a>
           </li>
-          <li>
-            <a href="#">
+          <li class="{{ 'products-list' == request()->path() ? 'active' : '' }}">
+            <a href="/products-list">
               <p>Add Product</p>
             </a>
           </li>

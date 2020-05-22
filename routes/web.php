@@ -81,7 +81,10 @@ Route::group(['middleware' => ['auth', 'admin']], function()
     
     //Categories routes (Admin)
     Route::get('/categories-list', 'Admin\CategoryController@viewCategory');
-    Route::post('/categories-added', 'Admin\CategoryController@addCategory')->name('add-category.addCategory');
+    Route::post('/categories-added', 'Admin\CategoryController@addCategory');
+
+    //Products routes (Admin)
+    Route::get('/products-list', 'Admin\ProductController@viewProduct');
 });
 
 Route::get('/logout', 'AdminController@logout');

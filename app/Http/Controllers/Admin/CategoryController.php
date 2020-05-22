@@ -16,12 +16,14 @@ class CategoryController extends Controller
 
     public function addCategory(Request $request)
     {
-        $this->validate($request, [
+        $validation = $this->validate($request, [
             'catName' => 'required',
             'slug' => 'required',
         ]);
 
-        Category::create($request->all());
+        Category::create($validation);
+
+        dd($validation);
 
         return back()->with('status','Category successfully added');
     }

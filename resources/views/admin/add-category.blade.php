@@ -46,10 +46,11 @@ Add Category
                     <h4 class="card-title">Add Categories</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('add-category.addCategory') }}" method="post">
+                    <form action="{{ url('/categories-added') }}" method="post">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <h6>Category Name:</h6>
-                            <input type="text" class="form-control" id="catName" name="catName" required>
+                            <input type="text" class="form-control" id="cat_name" name="cat_name" required>
                         </div>
                         <br>
                         <div class="form-group">
