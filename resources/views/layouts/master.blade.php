@@ -20,7 +20,7 @@
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="black" data-active-color="danger">
+    <div class="sidebar" data-color="blue" data-active-color="danger">
       <div class="logo">
         <h3 class="simple-text logo-normal">Admin's Panel</h3>
       </div>
@@ -33,7 +33,7 @@
           </li>
           <li class="{{ 'userslist' == request()->path() ? 'active' : '' }}">
             <a href="/userslist">
-              <p>Users' List</p>
+              <p>Registered Users</p>
             </a>
           </li>
           <li class="{{ 'orders-list' == request()->path() ? 'active' : '' }}">

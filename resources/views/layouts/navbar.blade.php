@@ -1,12 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	<div class="container">
-		<a class="navbar-brand" href="/">Mini Mart</a>
-		<form action="#" class="nav-link search-form">
-			<div class="form-group">
-				<span class="icon ion-ios-search"></span>
-				<input type="text" class="form-control" placeholder="Search...">
-			</div>
-		</form>
+		<a class="navbar-brand" href="/">BS Freshmart</a>
+		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
 			aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="oi oi-menu"></span> Menu

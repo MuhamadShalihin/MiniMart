@@ -129,7 +129,7 @@
 				@endforeach
 				<div class="col-sm-12 ftco-animate text-center">
 					<p>
-						<a href="/shop" class="btn btn-primary">View more products</a>
+						<a href="/shop" class="btn btn-primary">Shop Now</a>
 					</p>
 				</div>
 			</div>
