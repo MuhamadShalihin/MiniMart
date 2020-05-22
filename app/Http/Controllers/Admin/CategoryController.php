@@ -23,8 +23,6 @@ class CategoryController extends Controller
 
         Category::create($validation);
 
-        dd($validation);
-
         return back()->with('status','Category successfully added');
     }
 }
