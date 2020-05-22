@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Add Category
+Add Product
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Add Category
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Categories' List</h4>
+                    <h4 class="card-title">Products' List</h4>
                 </div>
                 <div class="card-body">
                     <table class="table">

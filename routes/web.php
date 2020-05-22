@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth', 'admin']], function()
     //Categories routes (Admin)
     Route::get('/categories-list', 'Admin\CategoryController@viewCategory');
     Route::post('/categories-added', 'Admin\CategoryController@addCategory');
+    Route::delete('/categories-delete/{id}', 'Admin\CategoryController@deleteCategory');
 
     //Products routes (Admin)
     Route::get('/products-list', 'Admin\ProductController@viewProduct');

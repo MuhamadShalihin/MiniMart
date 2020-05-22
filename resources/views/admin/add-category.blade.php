@@ -5,6 +5,20 @@ Add Category
 @endsection
 
 @section('content')
+@if (session()->has('status'))
+<div class="alert alert-success">
+    {{ session()->get('status') }}
+</div>
+@endif
+@if(count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -31,7 +45,11 @@ Add Category
                                     <a href="#" class="btn btn-success">Update</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <form action="/categories-delete/{{ $category->id }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

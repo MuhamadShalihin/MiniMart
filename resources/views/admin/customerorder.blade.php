@@ -17,6 +17,7 @@ Customers' Order
                         <thead class=" text-primary">
                             <th>ID</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Street</th>
                             <th>State</th>
                             <th>Postal Code</th>
@@ -37,11 +38,11 @@ Customers' Order
                                 <td>{{ $order->state }}</td>
                                 <td>{{ $order->postal_code }}</td>
                                 <td>{{ $order->phone }}</td>
-                                {{-- <td>{{ $order['product_name'] }}</td>
-                                <td>{{ $order['quantity'] }}</td>
-                                <td>{{ $order['price'] }}</td>
-                                <td>{{ $order['total_price'] }}</td>
-                                <td>{{ $order['grand_total'] }}</td> --}}
+                                <td>{{ json_encode($order->product_name) }}</td>
+                                <td>{{ json_encode($order->quantity) }}</td>
+                                <td>{{ json_encode($order->price) }}</td>
+                                <td>{{ json_encode($order->total_price) }}</td>
+                                <td>{{ json_encode($order->grand_total) }}</td>
                                 <td>
                                     <a href="#" class="btn btn-success">Update</a>
                                 </td>

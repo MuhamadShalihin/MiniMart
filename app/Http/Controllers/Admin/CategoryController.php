@@ -17,12 +17,20 @@ class CategoryController extends Controller
     public function addCategory(Request $request)
     {
         $validation = $this->validate($request, [
-            'catName' => 'required',
+            'cat_name' => 'required',
             'slug' => 'required',
         ]);
 
         Category::create($validation);
 
         return back()->with('status','Category successfully added');
+    }
+
+    public function deleteCategory(Request $request, $id)
+    {
+        $categories = Category::findOrFail($id);
+        $categories->delete();
+
+        return redirect('/categories-list')->with('status', 'Categories succesfully deleted');
     }
 }
