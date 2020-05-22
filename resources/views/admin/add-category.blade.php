@@ -48,7 +48,7 @@ Add Category
                                     <form action="/categories-delete/{{ $category->id }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this row?');">Delete</button>
                                     </form>
                                 </td>
                             </tr>

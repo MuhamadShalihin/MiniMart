@@ -21,6 +21,7 @@ Registered Users
                 <div>
                     <table class="table">
                         <thead>
+                            <th>&nbsp;</th>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Phone</th>
@@ -30,6 +31,7 @@ Registered Users
                         <tbody>
                             @foreach ($users as $user)
                             <tr>
+                                <td>&nbsp;</td>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->phone }}</td>
