@@ -51,7 +51,11 @@ Add Product
                                     <a href="#" class="btn btn-success">Update</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <form action="/product-delete/{{ $product->id }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this row?');">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

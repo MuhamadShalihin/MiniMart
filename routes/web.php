@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'admin']], function()
     //Products routes (Admin)
     Route::get('/products-list', 'Admin\ProductController@viewProduct');
     Route::post('/products-added', 'Admin\ProductController@addProduct');
+    Route::delete('/product-delete/{id}', 'Admin\ProductController@removeProduct');
 
     //Order routes (Admin)
     Route::get('/orders-list', 'Admin\DashboardController@viewOrder');

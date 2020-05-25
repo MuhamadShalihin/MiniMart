@@ -31,11 +31,19 @@ class ProductController extends Controller
             $image = date('YmdHis') . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $image);
 
-            $insert['image'] = "$image";
+            $validation['image'] = "$image";
         }
         
         Product::create($validation);
 
         return back()->with('status', 'Product succesfully added');
+    }
+
+    public function removeProduct(Request $request, $id)
+    {
+        $products = Product::findOrFail($id);
+        $products->delete();
+
+        return redirect('/products-list')->with('status', 'Product succesfully deleted');
     }
 }
