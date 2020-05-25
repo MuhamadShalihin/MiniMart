@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth', 'admin']], function()
     Route::put('/users-signedup-update/{id}', 'Admin\DashboardController@signedup_update');
     Route::delete('/users-delete/{id}', 'Admin\DashboardController@signedup_delete');
 
-    Route::get('/orders-list', 'Admin\DashboardController@viewOrder');
+    
     
     //Categories routes (Admin)
     Route::get('/categories-list', 'Admin\CategoryController@viewCategory');
@@ -86,6 +86,12 @@ Route::group(['middleware' => ['auth', 'admin']], function()
 
     //Products routes (Admin)
     Route::get('/products-list', 'Admin\ProductController@viewProduct');
+    Route::post('/products-added', 'Admin\ProductController@addProduct');
+
+    //Order routes (Admin)
+    Route::get('/orders-list', 'Admin\DashboardController@viewOrder');
+    Route::get('/orders-edit/{id}', 'Admin\DashboardController@editOrder');
+    Route::delete('/orders-delete/{id}', 'Admin\DashboardController@removeOrder');
 });
 
 Route::get('/logout', 'AdminController@logout');

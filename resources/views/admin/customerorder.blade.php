@@ -5,6 +5,20 @@ Customers' Order
 @endsection
 
 @section('content')
+@if (session()->has('status'))
+<div class="alert alert-success">
+    {{ session()->get('status') }}
+</div>
+@endif
+@if(count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -44,10 +58,14 @@ Customers' Order
                                 <td>{{ json_encode($order->total_price) }}</td>
                                 <td>{{ json_encode($order->grand_total) }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-success">Update</a>
+                                    <a href="/orders-edit/{{ $order->id }}" class="btn btn-success">Update</a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <form action="/orders-delete/{{ $order->id }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Remove selected order?');">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

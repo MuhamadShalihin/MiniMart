@@ -46,4 +46,24 @@ class DashboardController extends Controller
         $orders = BillingDetails::all();
         return view('admin.customerorder')->with('orders', $orders);
     }
+
+    public function editOrder(Request $request, $id)
+    {
+        $orders = BillingDetails::findOrFail($id);
+        return view('admin.customerorder-edit')->with('orders', $orders);
+    }
+
+    public function updateOrder(Request $request, $id)
+    {
+        $orders = BillingDetails::find($id);
+
+    }
+
+    public function removeOrder(Request $request, $id)
+    {
+        $orders = BillingDetails::findOrFail($id);
+        $orders->delete();
+
+        return redirect('/orders-list')->with('status', 'Order succesfully removed');
+    }
 }

@@ -9,7 +9,8 @@
   <title>
     @yield('title')
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -20,7 +21,7 @@
 
 <body class="">
   <div class="wrapper ">
-    <div class="sidebar" data-color="blue" data-active-color="danger">
+    <div class="sidebar" data-color="black" data-active-color="danger">
       <div class="logo">
         <h3 class="simple-text logo-normal">Admin's Panel</h3>
       </div>
@@ -43,12 +44,12 @@
           </li>
           <li class="{{ 'categories-list' == request()->path() ? 'active' : '' }}">
             <a href="/categories-list">
-              <p>Add Category</p>
+              <p>Manage Categories</p>
             </a>
           </li>
           <li class="{{ 'products-list' == request()->path() ? 'active' : '' }}">
             <a href="/products-list">
-              <p>Add Product</p>
+              <p>Manage Products</p>
             </a>
           </li>
         </ul>
@@ -58,13 +59,13 @@
       <!-- Navbar -->
       @include('layouts.admin-navbar')
       <!-- End Navbar -->
-      
+
       <div class="content">
 
         @yield('content')
-        
+
       </div>
-      
+
     </div>
   </div>
   <!--   Core JS Files   -->

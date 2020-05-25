@@ -14,8 +14,31 @@ class ProductController extends Controller
         return view('admin.add-product', compact('products'));
     }
 
-    public function addProduct()
+    public function addProduct(Request $request)
     {
+        $validation = $this->validate($request, [
+            'name' => 'required | string',
+            'slug' => 'required | string',
+            'price' => 'required | numeric',
+            'description' => 'required | string'
+        ]);
 
+        if ($files = $request->file('image'))
+        {
+            $destinationPath = public_path('/assets/images/products/');
+
+            $image = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $files->move($destinationPath, $image);
+
+            $insert['image'] = "$image";
+
+            $imageModel = new Photo();
+            $imageModel->image = "$image";
+            $imageModel->save();
+        }
+        
+        Product::create($validation);
+
+        return back()->with('status', 'Product succesfully added');
     }
 }

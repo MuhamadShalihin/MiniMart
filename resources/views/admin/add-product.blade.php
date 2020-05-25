@@ -5,6 +5,20 @@ Add Product
 @endsection
 
 @section('content')
+@if (session()->has('status'))
+<div class="alert alert-success">
+    {{ session()->get('status') }}
+</div>
+@endif
+@if(count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <div class="content">
     <div class="row">
         <div class="col-md-12">
@@ -30,7 +44,7 @@ Add Product
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
-                                <td>{{ $product->price }}</td>
+                                <td>{{ number_format($product->price, 2) }}</td>
                                 <td>{{ $product->image }}</td>
                                 <td>{{ $product->description }}</td>
                                 <td>
@@ -61,30 +75,36 @@ Add Product
                     <h4 class="card-title">Add Products</h4>
                 </div>
                 <div class="card-body">
-                    <form action="#" method="post">
+                    <form action="/products-added" method="post">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <h6>Product Name:</h6>
-                            <input type="text" class="form-control" id="catName" name="catName" required>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <br>
                         <div class="form-group">
                             <h6>Slug:</h6>
                             <input type="text" class="form-control" id="slug" name="slug" required>
                         </div>
+                        <br>
                         <div class="form-group">
                             <h6>Price: </h6>
-                            <input type="text" class="form-control" id="price" name="price" required>
+                            <input type="number" class="form-control" id="price" name="price" required>
                         </div>
+                        <br>
                         <div class="form-group">
                             <h6>Image: </h6>
-                            <input type="file" name="image" id="image">
+                            <br>
+                            <input type="file" class="form-control" id="image" name="image" required>
                         </div>
+                        <br>
                         <div class="form-group">
                             <h6>Description</h6>
                             <input type="text" class="form-control" id="description" name="description" required>
                         </div>
                         <br>
                         <button type="submit" class="btn btn-success">Save</button>
+                        <button type="reset" class="btn btn-warning">Reset</button>
                     </form>
                 </div>
             </div>
