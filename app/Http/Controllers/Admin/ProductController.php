@@ -28,14 +28,10 @@ class ProductController extends Controller
         {
             $destinationPath = public_path('/assets/images/products/');
 
-            $image = $slug . "." . $files->getClientOriginalExtension();
+            $image = date('YmdHis') . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $image);
 
             $insert['image'] = "$image";
-
-            $imageModel = new Product();
-            $imageModel->image = "$image";
-            $imageModel->save();
         }
         
         Product::create($validation);
