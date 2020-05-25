@@ -20,6 +20,7 @@ class ProductController extends Controller
             'name' => 'required | string',
             'slug' => 'required | string',
             'price' => 'required | numeric',
+            'image' => 'required | image | mimes:jpeg',
             'description' => 'required | string'
         ]);
 
