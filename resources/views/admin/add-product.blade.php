@@ -75,7 +75,7 @@ Add Product
                     <h4 class="card-title">Add Products</h4>
                 </div>
                 <div class="card-body">
-                    <form action="/products-added" method="post">
+                    <form action="/products-added" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <h6>Product Name:</h6>

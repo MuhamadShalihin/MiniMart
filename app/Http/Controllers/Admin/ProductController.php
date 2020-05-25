@@ -20,7 +20,7 @@ class ProductController extends Controller
             'name' => 'required | string',
             'slug' => 'required | string',
             'price' => 'required | numeric',
-            'image' => 'required | image | mimes:jpeg',
+            'image' => 'required | image | mimes:jpeg,png,jpg,gif,svg',
             'description' => 'required | string'
         ]);
 
@@ -28,12 +28,12 @@ class ProductController extends Controller
         {
             $destinationPath = public_path('/assets/images/products/');
 
-            $image = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $image = $slug . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $image);
 
             $insert['image'] = "$image";
 
-            $imageModel = new Photo();
+            $imageModel = new Product();
             $imageModel->image = "$image";
             $imageModel->save();
         }
