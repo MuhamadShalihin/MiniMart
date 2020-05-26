@@ -32,6 +32,7 @@ Add Product
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Slug</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Image</th>
                             <th>Description</th>
@@ -44,6 +45,9 @@ Add Product
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
+                                {{-- @foreach ($categories as $category) --}}
+                                    <td>{{-- {{ $category->cat_name }} --}}</td>
+                                {{-- @endforeach --}}
                                 <td>{{ number_format($product->price, 2) }}</td>
                                 <td>{{ $product->image }}</td>
                                 <td>{{ $product->description }}</td>
@@ -89,6 +93,16 @@ Add Product
                         <div class="form-group">
                             <h6>Slug:</h6>
                             <input type="text" class="form-control" id="slug" name="slug" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <h6>Categories:</h6>
+                            <select name="category" id="category" class="form-control">
+                                <option selected disabled hidden>- Choose a category -</option>
+                                {{-- @foreach ($categories as $category) --}}
+                                <option value="{{-- {{ $category->slug }} --}}">{{-- {{ $category->cat_name }} --}}</option>
+                                {{-- @endforeach --}}
+                            </select>
                         </div>
                         <br>
                         <div class="form-group">
