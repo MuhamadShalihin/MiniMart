@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function viewProduct()
     {
         $products = Product::orderBy('id')->paginate(10);
-        $categories = Category::where(['id' => 0])->get();
+        $categories = Category::all();
         return view('admin.add-product', compact('products', 'categories'));
     }
 

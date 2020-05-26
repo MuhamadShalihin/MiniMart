@@ -96,7 +96,7 @@ Add Product
                         <div class="form-group">
                             <h6>Categories:</h6>
                             <select name="category" id="category" class="form-control">
-                                <option selected disabled hidden>- Choose a category -</option>
+                                <option selected disabled>- Choose a category -</option>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
                                 @endforeach
