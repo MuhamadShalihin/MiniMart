@@ -67,22 +67,17 @@ Route::group(['middleware' => ['auth', 'admin']], function()
 
     Route::get('/orders', 'OrderController@index');
 
-    Route::get('/dashboard', function ()
-    {
-        return view('admin.dashboard');
-    });
+    Route::get('/dashboard', 'Admin\DashboardController@viewDashboard');
 
     Route::get('/userslist', 'Admin\DashboardController@signedup');
     Route::get('/users-edit/{id}', 'Admin\DashboardController@signedup_edit');
     Route::put('/users-signedup-update/{id}', 'Admin\DashboardController@signedup_update');
     Route::delete('/users-delete/{id}', 'Admin\DashboardController@signedup_delete');
 
-    
-    
     //Categories routes (Admin)
     Route::get('/categories-list', 'Admin\CategoryController@viewCategory');
     Route::post('/categories-added', 'Admin\CategoryController@addCategory');
-    Route::delete('/categories-delete/{id}', 'Admin\CategoryController@deleteCategory');
+    Route::delete('/categories-delete/{id}', 'Admin\CategoryController@removeCategory');
 
     //Products routes (Admin)
     Route::get('/products-list', 'Admin\ProductController@viewProduct');

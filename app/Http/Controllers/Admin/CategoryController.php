@@ -26,7 +26,7 @@ class CategoryController extends Controller
         return back()->with('status','Category successfully added');
     }
 
-    public function deleteCategory(Request $request, $id)
+    public function removeCategory(Request $request, $id)
     {
         $categories = Category::findOrFail($id);
         $categories->delete();

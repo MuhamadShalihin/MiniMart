@@ -9,6 +9,11 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    public function viewDashboard()
+    {
+        return view('admin.dashboard');
+    }
+
     public function signedup()
     {
         $users = User::all();
