@@ -45,9 +45,7 @@ Add Product
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
-                                {{-- @foreach ($categories as $category) --}}
-                                    <td>{{-- {{ $category->cat_name }} --}}</td>
-                                {{-- @endforeach --}}
+                                <td>{{ $product->category->cat_name ?? "" }}</td>
                                 <td>{{ number_format($product->price, 2) }}</td>
                                 <td>{{ $product->image }}</td>
                                 <td>{{ $product->description }}</td>
