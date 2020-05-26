@@ -12,8 +12,8 @@ class ProductController extends Controller
     public function viewProduct()
     {
         $products = Product::orderBy('id')->paginate(10);
-        $categories = Category::all();
-        return view('admin.add-product', compact('products'));
+        $categories = Category::where(['id' => 0])->get();
+        return view('admin.add-product', compact('products', 'categories'));
     }
 
     public function addProduct(Request $request)

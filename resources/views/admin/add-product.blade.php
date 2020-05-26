@@ -97,9 +97,9 @@ Add Product
                             <h6>Categories:</h6>
                             <select name="category" id="category" class="form-control">
                                 <option selected disabled hidden>- Choose a category -</option>
-                                {{-- @foreach ($categories as $category) --}}
-                                <option value="{{-- {{ $category->slug }} --}}">{{-- {{ $category->cat_name }} --}}</option>
-                                {{-- @endforeach --}}
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->cat_name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <br>
