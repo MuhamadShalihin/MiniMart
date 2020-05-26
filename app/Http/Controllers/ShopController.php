@@ -18,7 +18,7 @@ class ShopController extends Controller
     {
         // dd($slug);
         $categories = Category::all();
-
+        dd($categories);
         if ($slug != "")
         {
             $products = Product::with('categories')->whereHas('categories', function ($query) use($slug)
