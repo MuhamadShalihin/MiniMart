@@ -60,34 +60,32 @@ Route::view('/thank-you', 'thank-you');
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth', 'admin']], function()
-{
-    Route::get('/myprofile', 'ProfileController@getProfileView');
-    Route::post('/profile-update', 'ProfileController@postProfile');
+Route::get('/myprofile', 'ProfileController@getProfileView')->middleware('user');
+Route::post('/profile-update', 'ProfileController@postProfile')->middleware('user');
 
-    Route::get('/orders', 'OrderController@index');
+Route::get('/orders', 'OrderController@index')->middleware('user');
 
-    Route::get('/dashboard', 'Admin\DashboardController@viewDashboard');
+Route::get('/dashboard', 'Admin\DashboardController@viewDashboard')->middleware('admin');
 
-    Route::get('/userslist', 'Admin\DashboardController@signedup');
-    Route::get('/users-edit/{id}', 'Admin\DashboardController@signedup_edit');
-    Route::put('/users-signedup-update/{id}', 'Admin\DashboardController@signedup_update');
-    Route::delete('/users-delete/{id}', 'Admin\DashboardController@signedup_delete');
+Route::get('/userslist', 'Admin\DashboardController@signedup')->middleware('admin');
+Route::get('/users-edit/{id}', 'Admin\DashboardController@signedup_edit')->middleware('admin');
+Route::put('/users-signedup-update/{id}', 'Admin\DashboardController@signedup_update')->middleware('admin');
+Route::delete('/users-delete/{id}', 'Admin\DashboardController@signedup_delete')->middleware('admin');
 
-    //Categories routes (Admin)
-    Route::get('/categories-list', 'Admin\CategoryController@viewCategory');
-    Route::post('/categories-added', 'Admin\CategoryController@addCategory');
-    Route::delete('/categories-delete/{id}', 'Admin\CategoryController@removeCategory');
+//Categories routes (Admin)
+Route::get('/categories-list', 'Admin\CategoryController@viewCategory')->middleware('admin');
+Route::post('/categories-added', 'Admin\CategoryController@addCategory')->middleware('admin');
+Route::delete('/categories-delete/{id}', 'Admin\CategoryController@removeCategory')->middleware('admin');
 
-    //Products routes (Admin)
-    Route::get('/products-list', 'Admin\ProductController@viewProduct');
-    Route::post('/products-added', 'Admin\ProductController@addProduct');
-    Route::delete('/product-delete/{id}', 'Admin\ProductController@removeProduct');
+//Products routes (Admin)
+Route::get('/products-list', 'Admin\ProductController@viewProduct')->middleware('admin');
+Route::post('/products-added', 'Admin\ProductController@addProduct')->middleware('admin');
+Route::delete('/product-delete/{id}', 'Admin\ProductController@removeProduct')->middleware('admin');
 
-    //Order routes (Admin)
-    Route::get('/orders-list', 'Admin\DashboardController@viewOrder');
-    Route::get('/orders-edit/{id}', 'Admin\DashboardController@editOrder');
-    Route::delete('/orders-delete/{id}', 'Admin\DashboardController@removeOrder');
-});
+//Order routes (Admin)
+Route::get('/orders-list', 'Admin\DashboardController@viewOrder')->middleware('admin');
+Route::get('/orders-edit/{id}', 'Admin\DashboardController@editOrder')->middleware('admin');
+Route::delete('/orders-delete/{id}', 'Admin\DashboardController@removeOrder')->middleware('admin');
+
 
 Route::get('/logout', 'AdminController@logout');
