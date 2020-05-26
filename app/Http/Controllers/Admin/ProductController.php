@@ -28,7 +28,7 @@ class ProductController extends Controller
         {
             $destinationPath = public_path('/assets/images/products/');
 
-            $image = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $image = $validation['slug']  . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $image);
 
             $validation['image'] = "$image";
