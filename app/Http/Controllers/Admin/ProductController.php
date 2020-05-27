@@ -31,7 +31,7 @@ class ProductController extends Controller
         {
             $destinationPath = public_path('/assets/images/products/');
 
-            $image = $validation['slug']  . "." . $files->getClientOriginalExtension();
+            $image = $validation['slug'];
             $files->move($destinationPath, $image);
 
             $validation['image'] = "$image";
@@ -39,7 +39,7 @@ class ProductController extends Controller
         
         $product = Product::create($validation);
 
-        $product->categories()->attach($request->category_id);
+        $product->categories()->attach($request->category);
 
         return back()->with('status', 'Product succesfully added');
     }
