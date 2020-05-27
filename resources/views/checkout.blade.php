@@ -107,14 +107,14 @@
 							<th><b>Subtotal</b></th>
 						</tr>
 						@if(session('cart'))
-						@foreach(session('cart') as $id => $item)
-						<?php $total += $item['price'] * $item['quantity'] ?>
+						@foreach(session('cart') as $item)
+						<?php $total += $item->price * $item->quantity ?>
 						<?php $grand += $total + ($total * $charge)/100 ?>
 						<tr>
-							<td>{{ $item['name'] }}</td>
-							<td align="center">{{ $item['quantity'] }}</td>
-							<td align="center">RM{{ number_format($item['price'], 2) }}</td>
-							<td align="center">RM{{ number_format($item['quantity'] * $item['price'], 2) }}</td>
+							<td>{{ $item->name }}</td>
+							<td align="center">{{ $item->quantity }}</td>
+							<td align="center">RM{{ number_format($item->price, 2) }}</td>
+							<td align="center">RM{{ number_format($item->quantity * $item->price, 2) }}</td>
 						</tr>
 						@endforeach
 						@endif

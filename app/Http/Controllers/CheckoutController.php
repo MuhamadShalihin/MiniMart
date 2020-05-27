@@ -78,11 +78,11 @@ class CheckoutController extends Controller
 
             foreach ($carts as $cart)
             {
-                $total = $total + ($cart['price'] * $cart['quantity']);
+                $total = $total + ($cart->price * $cart->quantity);
                 $grand += $total + ($total * $charge)/100;
-                $itemName[] = $cart['name'];
-                $itemPrice[] = $cart['price'];
-                $itemQty[] = $cart['quantity'];
+                $itemName = $cart->name;
+                $itemPrice = $cart->price;
+                $itemQty = $cart->quantity;
             }
 
             $customer = new BillingDetails();
@@ -98,6 +98,8 @@ class CheckoutController extends Controller
             $customer->price = $itemPrice;
             $customer->total_price = number_format($total, 2);
             $customer->grand_total = number_format($grand, 2);
+
+            // $product->categories()->attach($request->category);
         
             // dd($itemName);
 
