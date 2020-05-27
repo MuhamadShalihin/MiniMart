@@ -21,6 +21,7 @@ class ProductController extends Controller
         $validation = $this->validate($request, [
             'name' => 'required | string',
             'slug' => 'required | string',
+            'category' => 'required | string',
             'price' => 'required | numeric',
             'image' => 'required | image | mimes:jpeg,png,jpg,gif,svg',
             'description' => 'required | string'
@@ -36,7 +37,9 @@ class ProductController extends Controller
             $validation['image'] = "$image";
         }
         
-        Product::create($validation);
+        $product = Product::create($validation);
+
+        $product->categories()->attach($request->category_id);
 
         return back()->with('status', 'Product succesfully added');
     }

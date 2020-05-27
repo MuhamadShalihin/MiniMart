@@ -32,7 +32,7 @@ Add Product
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Slug</th>
-                            <th>Category</th>
+                            {{-- <th>Category</th> --}}
                             <th>Price</th>
                             <th>Image</th>
                             <th>Description</th>
@@ -45,7 +45,7 @@ Add Product
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
-                                <td>{{ $product->category->cat_name ?? "" }}</td>
+                                {{-- <td>{{ $product->category->cat_name ?? "" }}</td> --}}
                                 <td>{{ number_format($product->price, 2) }}</td>
                                 <td>{{ $product->image }}</td>
                                 <td>{{ $product->description }}</td>
