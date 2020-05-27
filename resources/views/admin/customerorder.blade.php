@@ -52,11 +52,11 @@ Customers' Order
                                 <td>{{ $order->state }}</td>
                                 <td>{{ $order->postal_code }}</td>
                                 <td>{{ $order->phone }}</td>
-                                <td>{{ json_encode($order->product_name) }}</td>
-                                <td>{{ json_encode($order->quantity) }}</td>
-                                <td>{{ json_encode($order->price) }}</td>
-                                <td>{{ json_encode($order->total_price) }}</td>
-                                <td>{{ json_encode($order->grand_total) }}</td>
+                                <td>{{ $order->product_name }}</td>
+                                <td>{{ $order->quantity }}</td>
+                                <td>{{ $order->price }}</td>
+                                <td>{{ $order->total_price }}</td>
+                                <td>{{ $order->grand_total }}</td>
                                 <td>
                                     <a href="/orders-edit/{{ $order->id }}" class="btn btn-success">Update</a>
                                 </td>
