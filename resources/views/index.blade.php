@@ -22,7 +22,7 @@
 				<div class="container">
 					<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 						<div class="col-md-12 ftco-animate text-center">
-							<h1 class="mb-2">We serve Fresh Vegetables &amp; Fruits</h1>
+							<h1 class="mb-2">We serve Fresh Groceries &amp; daily basic needs</h1>
 							<h2 class="subheading mb-4">We deliver the best groceries</h2>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 						</div>
 						<div class="media-body">
 							<h3 class="heading">Free Shipping</h3>
-							<span>On order over $100</span>
+							<span>On order over RM100</span>
 						</div>
 					</div>
 				</div>

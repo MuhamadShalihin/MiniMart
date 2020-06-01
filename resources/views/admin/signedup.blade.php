@@ -25,7 +25,6 @@ Registered Users
                             <th>ID</th>
                             <th>Name</th>
                             <th>Phone</th>
-                            <th>Level</th>
                             <th>Email</th>
                         </thead>
                         <tbody>
@@ -35,7 +34,6 @@ Registered Users
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->phone }}</td>
-                                <td>{{ $user->user_level }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     <a href="/users-edit/{{ $user->id }}" class="btn btn-success">Edit</a>

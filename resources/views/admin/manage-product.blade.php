@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Add Product
+Manage Product
 @endsection
 
 @section('content')
@@ -32,7 +32,6 @@ Add Product
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Slug</th>
-                            {{-- <th>Category</th> --}}
                             <th>Price</th>
                             <th>Image</th>
                             <th>Description</th>
@@ -45,18 +44,17 @@ Add Product
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
-                                {{-- <td>{{ $product->category->cat_name ?? "" }}</td> --}}
                                 <td>{{ number_format($product->price, 2) }}</td>
                                 <td>{{ $product->image }}</td>
                                 <td>{{ $product->description }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-success">Update</a>
+                                    <a href="/products-edit/{{ $product->id }}" class="btn btn-success">Update</a>
                                 </td>
                                 <td>
                                     <form action="/product-delete/{{ $product->id }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this row?');">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this product?');">Delete</button>
                                     </form>
                                 </td>
                             </tr>
@@ -68,7 +66,7 @@ Add Product
                     <div class="col text-center">
                         <div class="col-12 d-flex justify-content-center pt-4">
                             <ul>
-                                <li class="{{ '/products-list' == request()->path() ? 'active' : '' }}">{{ $products->links() }}</li>
+                                <li class="{{ '/products-list' == request()->path() ?  'active' : '' }}">{{ $products->links() }}</li>
                             </ul>
                         </div>
                     </div>

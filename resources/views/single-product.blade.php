@@ -39,6 +39,12 @@
                     <p class="price"><span>RM {{ number_format($product->price, 2) }}</span></p>
                     <p>{{ $product->description }}</p>
                     <br>
+                    @if($product->stock_qty > 0)
+                    <p>In stock</p>
+                    @else
+                    <p>Out of stock</p>
+                    @endif
+                    <br>
                     <form action="{{ url('/add-to-cart/'. $product->id) }}" method="POST">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $product->id }}">

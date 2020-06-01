@@ -13,6 +13,8 @@ Your Order
                 <div class="card-header">
                     <h1>Your Order</h1>
                 </div>
+                @if (session('cart'))
+                @foreach ($orders as $order)
                 <div class="card-body">
                     <div class="form-group">
                         <?php
@@ -20,46 +22,51 @@ Your Order
 					    $charge = 5; 
 					    $grand = 0;
 					    ?>
-                        <table>
-                            @if (session('cart'))
-                            @foreach (session('cart') as $id => $item)
-                            <?php $total += $item['price'] * $item['quantity'] ?>
-                            <?php $grand += $total + ($total * $charge)/100 ?>
-                            <tr>
-                                <td>
-                                    <h5>Product Name</h5>
-                                </td>
-                                <td><label>{{ $item['name'] }}</label></td>
-                                <td>
-                                    <h5>Subtotal</h5>
-                                </td>
-                                <td>RM{{ number_format($item['quantity'] * $item['price'], 2) }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Quantity</h5>
-                                </td>
-                                <td>{{ $item['quantity'] }}</td>
-                                <td>
-                                    <h5>Grand Total</h5>
-                                </td>
-                                <td>RM{{ number_format($grand, 2) }}</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h5>Price</h5>
-                                </td>
-                                <td>RM{{ number_format($item['price'], 2) }}</td>
-                                <td>
-                                    <h5>Charge</h5>
-                                </td>
-                                <td>{{ $charge }}%</td>
-                            </tr>
-                            @endforeach
-                            @endif
-                        </table>
+                        <div class="card col-md-12">
+                            <div class="card-header">
+                                <p>
+                                    <h4>Order ID: #BS{{ str_pad($order->user_id, 3, 0, STR_PAD_LEFT) }}</h4>
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>Product Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Total Price</th>
+                                        <th>&nbsp;</th>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                        $grandTotal = 0.0;
+                                        @endphp
+                                        @foreach($order->products as $product)
+                                        <tr>
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->pivot->amount }}</td>
+                                            <td>RM{{ number_format($product->price, 2) }}</td>
+                                            <td>RM{{ number_format($product->price * $product->pivot->amount, 2) }}</td>
+                                            <td></td>
+                                        </tr>
+                                        @php
+                                        $grandTotal = $grandTotal + ($product->price * $product->pivot->amount)
+                                        @endphp
+                                        @endforeach
+                                        <tr>
+                                            <td class="text-primary"><b>Grand Total</b></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><b>RM{{ number_format($grandTotal, 2) }}</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @endforeach
+                @endif
             </div>
         </div>
     </div>

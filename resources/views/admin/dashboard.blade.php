@@ -47,7 +47,7 @@ Dashboard
             <div class="col-10 col-md-10">
               <div class="numbers">
                 <p class="card-category">Orders List</p>
-                <p class="card-title">{{ \DB::table('billing_details')->count() }}<p>
+                <p class="card-title">{{ \DB::table('orders')->count() }}<p>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ class ProductController extends Controller
     {
         $products = Product::orderBy('id')->paginate(10);
         $categories = Category::all();
-        return view('admin.add-product', compact('products', 'categories'));
+        return view('admin.manage-product', compact('products', 'categories'));
     }
 
     public function addProduct(Request $request)
@@ -31,7 +31,7 @@ class ProductController extends Controller
         {
             $destinationPath = public_path('/assets/images/products/');
 
-            $image = $validation['slug'];
+            $image = $validation['slug'] . "." . $files->getClientOriginalExtension();
             $files->move($destinationPath, $image);
 
             $validation['image'] = "$image";
@@ -42,6 +42,12 @@ class ProductController extends Controller
         $product->categories()->attach($request->category);
 
         return back()->with('status', 'Product succesfully added');
+    }
+
+    public function editProduct(Request $request, $id)
+    {
+        $products = Product::findOrFail($id);
+        return view ('admin.manage-product-edit')->with('products', $products);
     }
 
     public function removeProduct(Request $request, $id)

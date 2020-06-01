@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
-use App\BillingDetails;
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,7 +31,6 @@ class DashboardController extends Controller
         $users = User::find($id);
         $users->name = $request->input('username');
         $users->phone = $request->input('phone');
-        $users->user_level = $request->input('usertype');
         $users->email = $request->input('email');
         $users->update();
 
@@ -48,25 +47,25 @@ class DashboardController extends Controller
 
     public function viewOrder()
     {
-        $orders = BillingDetails::all();
+        $orders = Order::all();
         return view('admin.customerorder')->with('orders', $orders);
     }
 
     public function editOrder(Request $request, $id)
     {
-        $orders = BillingDetails::findOrFail($id);
+        $orders = Order::findOrFail($id);
         return view('admin.customerorder-edit')->with('orders', $orders);
     }
 
     public function updateOrder(Request $request, $id)
     {
-        $orders = BillingDetails::find($id);
+        $orders = Order::find($id);
 
     }
 
     public function removeOrder(Request $request, $id)
     {
-        $orders = BillingDetails::findOrFail($id);
+        $orders = Order::findOrFail($id);
         $orders->delete();
 
         return redirect('/orders-list')->with('status', 'Order succesfully removed');

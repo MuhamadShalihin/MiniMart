@@ -28,7 +28,7 @@
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li class="{{ 'dashboard' == request()->path() ? 'active' : '' }}">
-            <a href="dashboard">
+            <a href="/dashboard">
               <p>Dashboard</p>
             </a>
           </li>

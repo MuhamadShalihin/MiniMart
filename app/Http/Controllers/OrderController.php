@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,6 +16,8 @@ class OrderController extends Controller
      */
     public function index()
     {
+        $orders = Order::all();
+
         if (request()->category) 
         {
             $products = Product::with('categories')->whereHas('categories', function($query)
@@ -32,6 +35,7 @@ class OrderController extends Controller
             return view('customer.profile.order')->with([
                 'products' => $products,
                 'categories' => $categories,
+                'orders' => $orders
             ]);
         }  
         

@@ -47,6 +47,10 @@ Route::get('/shop/category/{slug}', 'ShopController@index')->name('shop.category
 // Route::get('/category/{slug}', 'CategoryController@show')->name('category.show')
 Route::get('/home', 'HomeController@index')->name('home')->middleware('user');
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 Route::get('/cart', 'CartController@cart');
 Route::post('/add-to-cart/{id}', 'CartController@addToCart');
 
@@ -79,6 +83,7 @@ Route::delete('/categories-delete/{id}', 'Admin\CategoryController@removeCategor
 
 //Products routes (Admin)
 Route::get('/products-list', 'Admin\ProductController@viewProduct')->middleware('admin');
+Route::get('/products-edit/{id}', 'Admin\ProductController@editProduct')->middleware('admin');
 Route::post('/products-added', 'Admin\ProductController@addProduct')->middleware('admin');
 Route::delete('/product-delete/{id}', 'Admin\ProductController@removeProduct')->middleware('admin');
 

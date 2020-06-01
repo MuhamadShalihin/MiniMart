@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Add Category
+Manage Category
 @endsection
 
 @section('content')

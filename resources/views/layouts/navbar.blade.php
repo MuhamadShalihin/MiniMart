@@ -24,7 +24,7 @@
 						@endforeach
 					</div>
 				</li>
-				<li class="nav-item"><a href="#" class="nav-link">About</a></li>
+				<li class="nav-item"><a href="/about" class="nav-link">About</a></li>
 				@guest
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"

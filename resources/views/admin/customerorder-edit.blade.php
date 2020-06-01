@@ -1,55 +1,41 @@
-@extends('layouts.styles')
-
-@include('layouts.navbar')
-
-<!-- END nav -->
+@extends('layouts.master')
 
 @section('title')
-Edit Users
+Update Customers' Order
 @endsection
 
-
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h1>Edit Profile</h1>
+                    <h1>Update Customers' Order</h1>
                 </div>
                 <div class="card-body">
-                    @if (session()->has('status'))
-                    <div class="alert alert-success">
-                        {{ session()->get('status') }}
-                    </div>
-                    @endif
                     <div class="row">
                         <div class="col-md-6">
-                            <form action="/profile-update" method="POST">
+                            <form action="/customersorder-update/{{ $orders->user->id }}" method="POST">
                                 {{ csrf_field() }}
+                                {{ method_field('PUT') }}
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" name="name" value="{{ $users->name }}" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label>Phone</label>
-                                    <input type="number" name="phone" value="{{ $users->phone }}" class="form-control"
-                                        maxlength="12">
+                                    <input type="text" name="name" value="{{ $orders->user->name }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" name="email" value="{{ $users->email }}" class="form-control">
+                                    <input type="email" name="email" value="{{ $orders->user->email }}"
+                                        class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Street</label>
-                                    <input type="text" name="street" value="{{ $users->street }}" class="form-control">
+                                    <input type="text" name="street" value="{{ $orders->user->street }}" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>State</label>
-                                    <select id="state" type="text"
-                                        class="form-control @error('state') is-invalid @enderror" name="state"
-                                        value="{{ old('state') }}" required autocomplete="state">
-                                        <option value="{{ $users->id }}" selected disabled hidden>
-                                            {{ $users->state }}
+                                    <select id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ $orders->user->state }}" required>
+                                        <option value="{{ $orders->user->id }}" selected disabled hidden>
+                                            {{ $orders->user->state }}
                                         </option>
                                         <option value="Perlis">Perlis</option>
                                         <option value="Kedah">Kedah</option>
@@ -70,11 +56,15 @@ Edit Users
                                 </div>
                                 <div class="form-group">
                                     <label>Postal Code</label>
-                                    <input type="number" name="postal_code" value="{{ $users->postal_code }}"
+                                    <input type="number" name="postal_code" value="{{ $orders->user->postal_code }}"
                                         class="form-control">
                                 </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="text" name="phone" value="{{ $orders->user->phone }}" class="form-control">
+                                </div>
                                 <button type="submit" class="btn btn-success">Update</button>
-                                <a href="/home" class="btn btn-danger">Cancel</a>
+                                <a href="/products-list" class="btn btn-danger">Cancel</a>
                             </form>
                         </div>
                     </div>
@@ -83,10 +73,4 @@ Edit Users
         </div>
     </div>
 </div>
-
-@section('scripts')
-
-@include('layouts.footer')
-
-<!-- loader -->
-@include('layouts.scripts')
+@endsection

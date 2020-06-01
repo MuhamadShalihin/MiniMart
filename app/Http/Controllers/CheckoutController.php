@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\BillingDetails;
+use Illuminate\Support\Carbon;
+
+use App\Order;
 use App\Category;
 use App\Product;
 
@@ -69,50 +71,37 @@ class CheckoutController extends Controller
             $products = Product::all();
             $categories = Category::all();
 
+            $customer = auth()->user();
+            $customer->bank_name = $request->bank_name;
+            $customer->card_number = $request->card_number;
+            $customer->expiry_date = Carbon::parse($request->expiry_date);
+            $customer->cvv2 = $request->cvv2;
+            $customer->save();
+
+            $order = new Order(); 
+            $order->user()->associate($customer);
+            $order->save();
+
             // dd($categories);
 
             $carts = session()->get('cart');
             $total = 0;
             $charge = 5;
             $grand = 0;
-
+            
             foreach ($carts as $cart)
             {
-                $total = $total + ($cart->price * $cart->quantity);
-                $grand += $total + ($total * $charge)/100;
-                $itemName = $cart->name;
-                $itemPrice = $cart->price;
-                $itemQty = $cart->quantity;
+                $product = $products->where('name', $cart['name'])->first();
+                $product->orders()->attach($order, ['amount' => $cart['quantity']]);
             }
 
-            $customer = new BillingDetails();
-            
-            $customer->email = $request->email;
-            $customer->name = $request->name;
-            $customer->street = $request->street;
-            $customer->state = $request->state;
-            $customer->postal_code = $request->postalcode;
-            $customer->phone = $request->phone;
-            $customer->product_name = $itemName;
-            $customer->quantity =  $itemQty;
-            $customer->price = $itemPrice;
-            $customer->total_price = number_format($total, 2);
-            $customer->grand_total = number_format($grand, 2);
-
-            // $product->categories()->attach($request->category);
-        
-            // dd($itemName);
-
-            $customer->save();
+            session()->forget('cart');
 
             return redirect('thank-you')->with('success_message', 'Order succesfully placed', [
                 'products' => $products,
                 'categories' => $categories,
             ]);
         } 
-        
-
-        
     }
 
     /**

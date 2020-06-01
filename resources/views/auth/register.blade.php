@@ -122,7 +122,7 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Postal Code') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="postal_code" type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" value="{{ old('postal_code') }}" min="50000" max="98859" maxlength="5" required autocomplete="postal_code">
+                                    <input id="postal_code" type="number" class="form-control @error('postal_code') is-invalid @enderror" name="postal_code" value="{{ old('postal_code') }}" min="20000" max="98859" maxlength="5" required autocomplete="postal_code">
 
                                     @error('postal_code')
                                     <span class="invalid-feedback" role="alert">
