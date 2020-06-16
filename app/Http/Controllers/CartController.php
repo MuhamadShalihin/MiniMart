@@ -90,7 +90,7 @@ class CartController extends Controller
         $cart = [];
         foreach($products as $product) 
         {
-           $cart[$product->id] = [ // that means $product is not valid variable
+           $cart[$product->id] = [
                "name" => $product->name,
                "quantity" => $product->pivot->amount,
                "price" => $product->price,
