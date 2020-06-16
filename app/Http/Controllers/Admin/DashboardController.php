@@ -61,6 +61,16 @@ class DashboardController extends Controller
     {
         $orders = Order::find($id);
 
+        $orders->user->name = $request->input('name');
+        $orders->user->email = $request->input('email');
+        $orders->user->street = $request->input('street');
+        $orders->user->state = $request->input('state');
+        $orders->user->postal_code = $request->input('postal_code');
+        $orders->user->phone = $request->input('phone');
+
+        $orders->user->save();
+
+        return redirect('/orders-list')->with('status', 'Order succesfully updated');
     }
 
     public function removeOrder(Request $request, $id)

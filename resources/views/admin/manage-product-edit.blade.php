@@ -31,6 +31,10 @@ Update Product
                                     <input type="number" name="price" value="{{ $products->price }}" class="form-control">
                                 </div>
                                 <div class="form-group">
+                                    <label>Stock</label>
+                                    <input type="number" name="stock" min="1" max="100" value="{{ $products->stock_qty }}" class="form-control">
+                                </div>
+                                <div class="form-group">
                                     <label>Image</label>
                                     <input type="file" name="image" value="{{ $products->image }}" class="form-control">
                                 </div>
@@ -38,7 +42,7 @@ Update Product
                                     <label>Description</label>
                                     <input type="description" name="description" value="{{ $products->description }}" class="form-control">
                                 </div>
-                                <button type="submit" class="btn btn-success">Update</button>
+                                <button class="btn btn-success">Update</button>
                                 <a href="/products-list" class="btn btn-danger">Cancel</a>
                             </form>
                         </div>

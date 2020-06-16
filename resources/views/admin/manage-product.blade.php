@@ -33,18 +33,20 @@ Manage Product
                             <th>Product Name</th>
                             <th>Slug</th>
                             <th>Price</th>
+                            <th>Stock</th>
                             <th>Image</th>
                             <th>Description</th>
                             <th>&nbsp;</th>
                             <th>&nbsp;</th>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @foreach ($products->sortByDesc('id') as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
                                 <td>{{ number_format($product->price, 2) }}</td>
+                                <td>{{ $product->stock_qty }}</td>
                                 <td>{{ $product->image }}</td>
                                 <td>{{ $product->description }}</td>
                                 <td>

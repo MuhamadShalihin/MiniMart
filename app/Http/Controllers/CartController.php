@@ -5,26 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
+use App\Order;
 
 class CartController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-   
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     public function cart()
     {
         if (request()->category) 
@@ -97,26 +81,24 @@ class CartController extends Controller
         return redirect('/cart')->with('success_message', 'Item(s) added to cart successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function reorder($id)
     {
-        //
-    }
+        $user = auth()->user();
+        $lastOrder = $user->orders()->findOrFail($id);
+        $products = $lastOrder->products;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $cart = [];
+        foreach($products as $product) 
+        {
+           $cart[$product->id] = [ // that means $product is not valid variable
+               "name" => $product->name,
+               "quantity" => $product->pivot->amount,
+               "price" => $product->price,
+           ];
+        }
+
+        session()->put('cart', $cart);
+        return redirect('/cart')->with('success_message', 'Item(s) added to cart successfully');
     }
 
     /**

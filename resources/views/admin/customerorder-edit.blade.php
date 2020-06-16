@@ -15,7 +15,7 @@ Update Customers' Order
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <form action="/customersorder-update/{{ $orders->user->id }}" method="POST">
+                            <form action="/orders-update/{{ $orders->id }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <div class="form-group">
@@ -63,7 +63,7 @@ Update Customers' Order
                                     <label>Phone</label>
                                     <input type="text" name="phone" value="{{ $orders->user->phone }}" class="form-control">
                                 </div>
-                                <button type="submit" class="btn btn-success">Update</button>
+                                <button class="btn btn-success">Update</button>
                                 <a href="/products-list" class="btn btn-danger">Cancel</a>
                             </form>
                         </div>

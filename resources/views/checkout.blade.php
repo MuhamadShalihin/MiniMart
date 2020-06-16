@@ -176,7 +176,7 @@
 					$charge = 5; 
 					$grand = 0;
 					?>
-					<table class="table-borderless table-responsive table-sm">
+					<table class="table-borderless table-responsive">
 						<tr align="center">
 							<th><b>Product Name</b></th>
 							<th><b>Qty</b></th>

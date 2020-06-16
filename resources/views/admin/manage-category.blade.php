@@ -36,13 +36,13 @@ Manage Category
                             <td>&nbsp;</td>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($categories->sortByDesc('id') as $category)
                             <tr>
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->cat_name }}</td>
                                 <td>{{ $category->slug }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-success">Update</a>
+                                    <a href="/categories-edit/{{ $category->id }}" class="btn btn-success">Update</a>
                                 </td>
                                 <td>
                                     <form action="/categories-delete/{{ $category->id }}" method="POST">

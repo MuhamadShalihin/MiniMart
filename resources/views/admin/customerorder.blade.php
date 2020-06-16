@@ -29,7 +29,7 @@ Customers' Order
                 <div class="card-body">
                     <table class="table">
                         <thead class=" text-primary">
-                            <th>ID</th>
+                            <th>Order ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Street</th>
@@ -38,9 +38,9 @@ Customers' Order
                             <th>Phone</th>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $order)
+                            @foreach ($orders->sortByDesc('id') as $order)
                             <tr>
-                                <td>{{ $order->id  }}</td>
+                                <td>#BS{{ str_pad($order->id, 3, 0, STR_PAD_LEFT) }}</td>
                                 <td>{{ $order->user->name }}</td>
                                 <td>{{ $order->user->email }}</td>
                                 <td>{{ $order->user->street }}</td>

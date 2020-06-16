@@ -13,8 +13,7 @@ Your Order
                 <div class="card-header">
                     <h1>Your Order</h1>
                 </div>
-                @if (session('cart'))
-                @foreach ($orders as $order)
+                @foreach ($orders->sortByDesc('id') as $order)
                 <div class="card-body">
                     <div class="form-group">
                         <?php
@@ -25,7 +24,7 @@ Your Order
                         <div class="card col-md-12">
                             <div class="card-header">
                                 <p>
-                                    <h4>Order ID: #BS{{ str_pad($order->user_id, 3, 0, STR_PAD_LEFT) }}</h4>
+                                    <h4><b>Order ID:</b> #BS{{ str_pad($order->user_id, 3, 0, STR_PAD_LEFT) }}</h4>
                                 </p>
                             </div>
                             <div class="card-body">
@@ -39,19 +38,22 @@ Your Order
                                     </thead>
                                     <tbody>
                                         @php
+                                        $total = 0.0;
                                         $grandTotal = 0.0;
+                                        $charge = 5;
                                         @endphp
                                         @foreach($order->products as $product)
+                                        @php
+                                        $total += $product->price * $product->pivot->amount;
+                                        $grandTotal += $total + ( $total * $charge)/100;
+                                        @endphp
                                         <tr>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->pivot->amount }}</td>
                                             <td>RM{{ number_format($product->price, 2) }}</td>
-                                            <td>RM{{ number_format($product->price * $product->pivot->amount, 2) }}</td>
+                                            <td>RM{{ number_format($total, 2) }}</td>
                                             <td></td>
                                         </tr>
-                                        @php
-                                        $grandTotal = $grandTotal + ($product->price * $product->pivot->amount)
-                                        @endphp
                                         @endforeach
                                         <tr>
                                             <td class="text-primary"><b>Grand Total</b></td>
@@ -66,7 +68,6 @@ Your Order
                     </div>
                 </div>
                 @endforeach
-                @endif
             </div>
         </div>
     </div>

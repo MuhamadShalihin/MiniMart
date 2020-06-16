@@ -92,6 +92,7 @@
                                 <div class="col-md-6">
                                     <select id="state" type="text" class="form-control @error('state') is-invalid @enderror" name="state" value="{{ old('state') }}" required autocomplete="state">
                                         <option selected disabled hidden>- Choose a state -</option>
+                                        <option value="Selangor">Selangor</option>
                                         <option value="Perlis">Perlis</option>
                                         <option value="Kedah">Kedah</option>
                                         <option value="Perak">Perak</option>

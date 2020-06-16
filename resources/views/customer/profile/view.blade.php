@@ -51,6 +51,7 @@ Edit Users
                                         <option value="{{ $users->id }}" selected disabled hidden>
                                             {{ $users->state }}
                                         </option>
+                                        <option value="Selangor">Selangor</option>
                                         <option value="Perlis">Perlis</option>
                                         <option value="Kedah">Kedah</option>
                                         <option value="Perak">Perak</option>
@@ -73,8 +74,9 @@ Edit Users
                                     <input type="number" name="postal_code" value="{{ $users->postal_code }}"
                                         class="form-control">
                                 </div>
-                                <button type="submit" class="btn btn-success">Update</button>
+                                <button type="submit" class="btn btn-info">Update</button>
                                 <a href="/home" class="btn btn-danger">Cancel</a>
+                                <button type="reset" class="btn btn-warning">Reset</button>
                             </form>
                         </div>
                     </div>

@@ -68,6 +68,8 @@ Route::get('/myprofile', 'ProfileController@getProfileView')->middleware('user')
 Route::post('/profile-update', 'ProfileController@postProfile')->middleware('user');
 
 Route::get('/orders', 'OrderController@index')->middleware('user');
+Route::get('/order-history', 'OrderController@viewHistory')->middleware('user');
+Route::get('/reorder/{id}', 'CartController@reorder')->middleware('user');
 
 Route::get('/dashboard', 'Admin\DashboardController@viewDashboard')->middleware('admin');
 
@@ -78,18 +80,22 @@ Route::delete('/users-delete/{id}', 'Admin\DashboardController@signedup_delete')
 
 //Categories routes (Admin)
 Route::get('/categories-list', 'Admin\CategoryController@viewCategory')->middleware('admin');
+Route::get('/categories-edit/{id}', 'Admin\CategoryController@editCategory')->middleware('admin');
 Route::post('/categories-added', 'Admin\CategoryController@addCategory')->middleware('admin');
+Route::put('/categories-update/{id}', 'Admin\CategoryController@updateCategory')->middleware('admin');
 Route::delete('/categories-delete/{id}', 'Admin\CategoryController@removeCategory')->middleware('admin');
 
 //Products routes (Admin)
 Route::get('/products-list', 'Admin\ProductController@viewProduct')->middleware('admin');
 Route::get('/products-edit/{id}', 'Admin\ProductController@editProduct')->middleware('admin');
 Route::post('/products-added', 'Admin\ProductController@addProduct')->middleware('admin');
+Route::put('/products-update/{id}', 'Admin\ProductController@updateProduct')->middleware('admin');
 Route::delete('/product-delete/{id}', 'Admin\ProductController@removeProduct')->middleware('admin');
 
 //Order routes (Admin)
 Route::get('/orders-list', 'Admin\DashboardController@viewOrder')->middleware('admin');
 Route::get('/orders-edit/{id}', 'Admin\DashboardController@editOrder')->middleware('admin');
+Route::put('/orders-update/{id}', 'Admin\DashboardController@updateOrder')->middleware('admin');
 Route::delete('/orders-delete/{id}', 'Admin\DashboardController@removeOrder')->middleware('admin');
 
 

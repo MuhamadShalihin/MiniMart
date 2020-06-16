@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function viewCategory()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('id', 'DESC')->paginate(5);
         return view('admin.manage-category')->with('categories', $categories);
     }
 
@@ -24,6 +24,23 @@ class CategoryController extends Controller
         Category::create($validation);
 
         return back()->with('status','Category successfully added');
+    }
+
+    public function editCategory(Request $request, $id)
+    {
+        $categories = Category::findOrFail($id);
+        return view ('admin.manage-category-edit')->with('categories', $categories);
+    }
+
+    public function updateCategory(Request $request, $id)
+    {
+        $categories = Category::find($id);
+        $categories->cat_name = $request->input('name');
+        $categories->slug = $request->input('slug');
+
+        $categories->save();
+
+        return redirect('/categories-list')->with('status', 'Product succesfully updated');
     }
 
     public function removeCategory(Request $request, $id)

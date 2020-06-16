@@ -78,7 +78,9 @@ class CheckoutController extends Controller
             $customer->cvv2 = $request->cvv2;
             $customer->save();
 
-            $order = new Order(); 
+            $order = new Order();
+            // Can directly add timestamp here
+            $order->created_at = $order->updated_at = now();
             $order->user()->associate($customer);
             $order->save();
 
@@ -93,6 +95,12 @@ class CheckoutController extends Controller
             {
                 $product = $products->where('name', $cart['name'])->first();
                 $product->orders()->attach($order, ['amount' => $cart['quantity']]);
+
+                $getProductStock = Product::where('slug', $product->slug)->first();
+                echo "Original Stock: " . $getProductStock->stock_qty;
+                echo "Reduced Stock: " . $cart['quantity'];
+                $newStock = $getProductStock->stock_qty - $cart['quantity'];
+                Product::where('slug', $product->slug)->update(['stock_qty' => $newStock]);
             }
 
             session()->forget('cart');

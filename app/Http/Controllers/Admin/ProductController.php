@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function viewProduct()
     {
-        $products = Product::orderBy('id')->paginate(10);
+        $products = Product::orderBy('id', 'DESC')->paginate(10);
         $categories = Category::all();
         return view('admin.manage-product', compact('products', 'categories'));
     }
@@ -48,6 +48,21 @@ class ProductController extends Controller
     {
         $products = Product::findOrFail($id);
         return view ('admin.manage-product-edit')->with('products', $products);
+    }
+
+    public function updateProduct(Request $request, $id)
+    {
+        $products = Product::find($id);
+        $products->name = $request->input('name');
+        $products->slug = $request->input('slug');
+        $products->price = $request->input('price');
+        $products->stock_qty = $request->input('stock');
+        $products->image = $request->input('image');
+        $products->description = $request->input('description');
+
+        $products->save();
+
+        return redirect('/products-list')->with('status', 'Product succesfully updated');
     }
 
     public function removeProduct(Request $request, $id)
