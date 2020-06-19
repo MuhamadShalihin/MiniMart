@@ -30,7 +30,7 @@
             </div>
             @endif
             <?php $total = 0 ?>
-            <?php $charge = 5 ?>
+            <?php $charge = 10.0 ?>
             <?php $grand = 0 ?>
             @if(session('cart'))
             <div class="row">
@@ -51,7 +51,7 @@
                                 @foreach(session('cart') as $id => $item)
 
                                 <?php $total += $item['price'] * $item['quantity'] ?>
-                                <?php $grand += $total + ($total * $charge)/100 ?>
+                                <?php $grand = $total + $charge ?>
 
                                 <tr class="text-center">
                                     <td class="product-remove remove-from-cart" data-id="{{ $id }}">
@@ -90,7 +90,7 @@
                         </p>
                         <p class="d-flex">
                             <span>Delivery</span>
-                            <span>{{ $charge }}%</span>
+                            <span>RM {{ number_format($charge, 2) }}</span>
                         </p>
                         <hr>
                         <p class="d-flex total-price">

@@ -143,6 +143,29 @@
 	<!-- loader -->
 	@include('layouts.scripts')
 
+	<script type="text/javascript">
+
+		var BotStar = 
+		{
+			appId: "APP_ID"
+		};
+		<div class="chatbot-container" style="height: 100%"></div>
+		!function(t,a)
+		{
+			var e=function()
+			{
+				(e.q=e.q||[]).push(arguments)};e.q=e.q||[],t.BotStarApi=e;
+				var n=function()
+				{
+					var t = a.createElement("script");
+					t.type="text/javascript",t.async=!0,t.src="https://widget.botstar.com/embed/bundle.js";
+					var e = a.getElementsByTagName("script")[0];
+					e.parentNode.insertBefore(t,e)
+				};
+				
+				t.attachEvent?t.attachEvent("onload",n):t.addEventListener("load",n,!1)
+			}(window,document);
+	</script>
 </body>
 
 </html>

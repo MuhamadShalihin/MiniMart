@@ -28,7 +28,7 @@ Manage Product
                 </div>
                 <div class="card-body">
                     <table class="table">
-                        <thead class=" text-primary">
+                        <thead class="text-primary text-center">
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Slug</th>
@@ -43,12 +43,14 @@ Manage Product
                             @foreach ($products->sortByDesc('id') as $product)
                             <tr>
                                 <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
+                                <td class="text-center">{{ $product->name }}</td>
                                 <td>{{ $product->slug }}</td>
                                 <td>{{ number_format($product->price, 2) }}</td>
                                 <td>{{ $product->stock_qty }}</td>
-                                <td>{{ $product->image }}</td>
-                                <td>{{ $product->description }}</td>
+                                <td>
+                                    <img class="img-fluid" src="{{ asset('assets/images/products/' . $product->image) }}" width="100" height="100">
+                                </td>
+                                <td class="text-center">{{ $product->description }}</td>
                                 <td>
                                     <a href="/products-edit/{{ $product->id }}" class="btn btn-success">Update</a>
                                 </td>

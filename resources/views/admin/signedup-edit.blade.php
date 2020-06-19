@@ -31,7 +31,7 @@ Edit Users
                                     <label>Level</label>
                                         <select name="usertype" class="form-control" >
                                             <option value="admin">Admin</option>
-                                            <option value="vendor">Vendor</option>
+                                            <option value="vendor">User</option>
                                         </select>
                                 </div>
                                 <div class="form-group">

@@ -29,9 +29,16 @@ class DashboardController extends Controller
     public function signedup_update(Request $request, $id)
     {
         $users = User::find($id);
-        $users->name = $request->input('username');
-        $users->phone = $request->input('phone');
         $users->email = $request->input('email');
+        $users->name = $request->input('username');
+        $users->street = $request->input('street');
+        $users->state = $request->input('state');
+        $users->postal_code = $request->input('postalcode');
+        $users->phone = $request->input('phone');
+        $users->bank_name = $request->input('bank_name');
+        $users->card_number = $request->input('card_number');
+        $users->expiry_date = $request->input('expiry_date');
+        $users->cvv2 = $request->input('cvv2');
         $users->update();
 
         return redirect('/userslist')->with('status', 'Data succesfully updated');

@@ -20,4 +20,5 @@
 <script src="{{ asset('assets/js/google-map.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
+
 </div>
