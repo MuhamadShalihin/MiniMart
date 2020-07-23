@@ -10,7 +10,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        
         if (request()->category) 
         {
             $products = Product::with('categories')->whereHas('categories', function($query)
@@ -29,8 +28,7 @@ class HomeController extends Controller
                 'products' => $products,
                 'categories' => $categories,
             ]);
-        } 
-        
+        }
     }
 
     public function home()

@@ -173,20 +173,20 @@
 				<div class="col-xl-5">
 					<?php
 					$total = 0; 
-					$charge = 5; 
+					$charge = 10.00; 
 					$grand = 0;
 					?>
 					<table class="table-borderless table-responsive">
 						<tr align="center">
 							<th><b>Product Name</b></th>
-							<th><b>Qty</b></th>
+							<th><b>Quantity</b></th>
 							<th><b>Price</b></th>
 							<th><b>Subtotal</b></th>
 						</tr>
 						@if(session('cart'))
 						@foreach(session('cart') as $item => $id)
 						<?php $total += $id['price'] * $id['quantity'] ?>
-						<?php $grand += $total + ($total * $charge)/100 ?>
+						<?php $grand += $total + $charge ?>
 						<tr>
 							<td>{{ $id['name'] }}</td>
 							<td align="center">{{ $id['quantity'] }}</td>
@@ -206,7 +206,7 @@
 								</p>
 								<p class="d-flex">
 									<span>Delivery</span>
-									<span>{{ $charge }}%</span>
+									<span>RM {{ number_format($charge, 2) }}</span>
 								</p>
 								<hr>
 								<p class="d-flex total-price">

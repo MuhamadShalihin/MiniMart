@@ -32,7 +32,7 @@
             <br>
             <div class="row">
                 <div class="col-lg-6 mb-5 ftco-animate">
-                    <img src="{{ asset('assets/images/products/' . $product->slug . '.jpg') }}" class="img-fluid">
+                    <img src="{{ asset('assets/images/products/' . $product->image) }}" class="img-fluid">
                 </div>
                 <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                     <h3>{{ $product->name }}</h3>

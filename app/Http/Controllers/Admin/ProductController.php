@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function viewProduct()
     {
-        $products = Product::orderBy('id', 'DESC')->paginate(10);
+        $products = Product::orderBy('id', 'DESC')->paginate(5);
         $categories = Category::all();
         return view('admin.manage-product', compact('products', 'categories'));
     }
